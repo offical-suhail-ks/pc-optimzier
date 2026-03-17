@@ -1,13 +1,15 @@
-# PC SUPER OPTIMIZER v3.0
+# PC SUPER OPTIMIZER v4.0
 ### Windows Performance, Gaming & System Optimization Tool
+
+> Comprehensive system tuning for maximum FPS and minimal input lag — deep bloatware removal and background process refinement — advanced power management and thermal optimization — network stabilization for competitive gaming.
 
 ---
 
 ## What Is This?
 
-**PC Super Optimizer** is a free, open-source Windows optimization tool built in Python. It gives you a clean terminal menu to run powerful system tweaks — all in one place, no bloatware, no ads, no subscriptions.
+**PC Super Optimizer** is a free, open-source Windows optimization utility built entirely in Python. It provides a clean, colorful terminal interface with 8 powerful modules that cover every aspect of PC performance — from GPU scheduling and input lag reduction, to bloatware removal, thermal management, and competitive network tuning.
 
-It handles everything from cleaning junk files and optimizing RAM, to creating a custom "Unlimited Performance" power plan and tuning your PC for hardcore gaming.
+No bloatware. No ads. No internet connection required. No third-party dependencies. Every line of code is readable in `optimizer.py`.
 
 ---
 
@@ -15,23 +17,21 @@ It handles everything from cleaning junk files and optimizing RAM, to creating a
 
 | Requirement | Details |
 |---|---|
-| **OS** | Windows 10 or Windows 11 |
+| **OS** | Windows 10 or Windows 11 (64-bit recommended) |
 | **Python** | 3.8 or higher — [python.org](https://python.org) |
-| **Privileges** | Administrator (script auto-requests this) |
-| **Dependencies** | None — uses only Python standard library |
+| **Privileges** | Administrator — script auto-requests elevation on launch |
+| **Dependencies** | None — Python standard library only |
 
 ---
 
 ## How to Run
 
-1. Download or clone this folder
-2. Make sure `optimizer.py` and `RUN.bat` are in the **same folder**
+1. Place `optimizer.py` and `RUN.bat` in the **same folder**
+2. Install Python from [python.org](https://python.org) if needed — tick **"Add Python to PATH"** during install
 3. **Double-click `RUN.bat`**
-4. Click **Yes** on the UAC prompt (Administrator required)
-5. Pick an option from the menu
-
-> **No Python?** Download it free from [python.org](https://python.org).
-> During install, check **"Add Python to PATH"** — this is required.
+4. Click **Yes** on the UAC (Administrator) prompt
+5. Choose a number from the menu and press ENTER
+6. **Restart your PC** after running optimizations for maximum effect
 
 ---
 
@@ -40,12 +40,12 @@ It handles everything from cleaning junk files and optimizing RAM, to creating a
 ```
 [1]  Create System Restore Point
 [2]  Optimize System Performance
-[3]  Hardcore Gaming Optimizer
-[4]  Delete All Caches and Junk Files
-[5]  Create and Apply UNLIMITED Power Plan
-[6]  Deep Clean Registry
-[7]  Optimize RAM and Virtual Memory
-[8]  Optimize Network and DNS
+[3]  Max FPS + Input Lag Reduction
+[4]  Bloatware + Background Process Removal
+[5]  Power + Thermal Optimization
+[6]  Competitive Network Stabilization
+[7]  Delete All Caches and Junk Files
+[8]  Deep Clean Registry + RAM
 [9]  FULL NUKE - Run ALL Optimizations
 [0]  Exit
 ```
@@ -55,125 +55,207 @@ It handles everything from cleaning junk files and optimizing RAM, to creating a
 ## What Each Module Does
 
 ### [1] Create System Restore Point
-Creates a Windows System Restore Point before any changes are made.
-- Enables System Restore on C:\ if disabled
-- Labels the restore point "PC Super Optimizer - Backup"
-- Lets you roll back all changes via Control Panel → Recovery → System Restore
+Safety first — creates a restore point before any changes so you can always roll back.
+- Enables System Restore on C:\ if it was disabled
+- Labels the point `"PC Super Optimizer v4.0"`
+- Roll back at any time via: Control Panel → Recovery → System Restore
 
 ---
 
 ### [2] Optimize System Performance
-Tunes Windows for maximum speed and responsiveness.
-- Sets Visual Effects to **Best Performance** (disables animations, transparency)
-- Removes menu delay (0ms response)
-- Reduces app kill timeout to 2 seconds
-- Disables Windows telemetry (DiagTrack)
-- Tunes CPU scheduling to prioritize foreground apps
-- Disables SysMain (Superfetch) — reduces disk thrashing
-- Disables Windows Search indexer
-- Runs `sfc /scannow` in background to repair system files
+Core Windows responsiveness and CPU tuning.
+- Visual Effects set to **Best Performance** — animations, transparency, Aero Peek all off
+- Menu delay removed (0ms), app kill timeout reduced to 1 second
+- `WaitToKillServiceTimeout` reduced to 2 seconds
+- CPU scheduling tuned to prioritize foreground apps (`Win32PrioritySeparation = 38`)
+- CPU core parking disabled — all cores stay active
+- SysMain (Superfetch) stopped and disabled
+- Windows Search indexer stopped and disabled
+- DiagTrack and dmwappushservice (telemetry) stopped and disabled
+- `sfc /scannow` launched in background to repair any system file corruption
 
 ---
 
-### [3] Hardcore Gaming Optimizer
-Everything your PC needs to squeeze out maximum FPS and lowest latency.
-- Activates **UNLIMITED PERFORMANCE** power plan
-- Sets GPU scheduling priority to maximum (GPU Priority: 8)
-- Disables network throttling — lowest possible ping
-- Disables Game DVR, Game Bar, and background recording
-- Disables fullscreen optimizations — true exclusive fullscreen
-- Disables mouse acceleration — pure 1:1 raw input
-- Stops background services: SysMain, DiagTrack, WSearch, Fax, MapsBroker
-- Locks CPU at 100% — no throttling
-- Clears NVIDIA and AMD shader caches for fresh build
-- Flushes DNS cache
+### [3] Max FPS + Input Lag Reduction
+Comprehensive system tuning for maximum FPS and minimal input lag.
+
+**GPU & Rendering**
+- GPU task scheduler set to maximum priority (GPU Priority: 8, Clock Rate: 10000)
+- `Background Only` set to False — OS never de-prioritizes game threads
+- Hardware-Accelerated GPU Scheduling (HAGS) enabled via registry
+- Fullscreen optimizations disabled globally — true exclusive fullscreen on all games
+- Game DVR, Game Bar, and background recording fully disabled
+- NVIDIA DXCache, GLCache, and OptixCache cleared
+- AMD DxCache cleared
+
+**Mouse & Input**
+- Mouse acceleration fully disabled — pure 1:1 raw input
+- Enhance Pointer Precision turned off
+- System timer resolution locked to **1ms** via `timeBeginPeriod` API call
+- USB selective suspend disabled per HID device (mouse and keyboard stay instant)
+
+**Multimedia Profile**
+- `SystemResponsiveness` set to 0 — game threads get full CPU time slices
+- `NetworkThrottlingIndex` set to max — no OS-level network throttling
+- `NoLazyMode` enabled — OS cannot put the multimedia timer to sleep
 
 ---
 
-### [4] Delete All Caches and Junk Files
-Wipes all temporary, cached, and junk files Windows accumulates over time.
-- User and Windows TEMP folders
-- Windows Prefetch cache
-- Internet Explorer and Edge browser cache
-- Windows thumbnail cache database
-- NVIDIA DXCache and GLCache (shader cache)
-- AMD DxCache (shader cache)
-- Recycle Bin (all drives)
-- Windows Update download cache
-- Font cache (rebuilt automatically on next boot)
-- Runs Windows built-in `cleanmgr` Disk Cleanup
+### [4] Bloatware + Background Process Removal
+Deep bloatware removal and background process refinement.
+
+**Services Disabled (24 total)**
+DiagTrack, dmwappushservice, SysMain, WSearch, TabletInputService, MapsBroker, Fax, RetailDemo, RemoteRegistry, WerSvc, PcaSvc, XblAuthManager, XblGameSave, XboxNetApiSvc, XboxGipSvc, lfsvc (geolocation), SharedAccess, PhoneSvc, WpcMonSvc (parental controls), wisvc (Insider service), TrkWks, PrintNotify, stisvc (Windows Image Acquisition), WMPNetworkSvc
+
+**UWP Apps Removed (32 packages)**
+Bing News, Bing Weather, Bing Finance, Bing Sports, Get Help, Get Started, Solitaire Collection, Office Hub, OneNote, OneConnect, People, Skype, Feedback Hub, Maps, Xbox TCUI, Xbox App, Xbox Game Overlay, Xbox Gaming Overlay, Xbox Identity Provider, Xbox Speech-to-Text, Your Phone, Groove Music, Movies & TV, Microsoft Teams, Clipchamp, To Do, Power Automate, Sound Recorder, Cortana, Mixed Reality Portal, 3D Viewer, Print 3D
+
+Also removed as **provisioned packages** so they won't reinstall for new user accounts.
+
+**Additional Background Hardening**
+- Background app access disabled globally
+- Cortana disabled via policy
+- Windows tips, ads, and suggestions disabled
+- Telemetry data collection set to 0 via policy registry
+- Activity history and location tracking disabled
+- Startup app delay removed (`StartupDelayInMSec = 0`)
 
 ---
 
-### [5] Create and Apply UNLIMITED Power Plan
-Creates a brand-new custom Windows power plan with zero compromises.
-- Duplicates the **Ultimate Performance** base plan
-- Names it **"UNLIMITED PERFORMANCE"**
-- Locks CPU minimum and maximum at **100%**
-- Enables **Turbo Boost** at maximum policy
-- Disables CPU idle states
-- Disables **sleep**, **hibernate**, and **hybrid sleep** — never interrupts you
+### [5] Power + Thermal Optimization
+Advanced power management and thermal optimization.
+
+**UNLIMITED PERFORMANCE Power Plan**
+- Duplicates the Ultimate Performance base plan
+- Names it **"UNLIMITED PERFORMANCE"** (visible in Power Options after)
+- CPU minimum and maximum locked at **100%**
+- Turbo Boost enabled at maximum boost policy (`PERFBOOSTMODE = 2`, `PERFBOOSTPOL = 100`)
+- CPU idle states disabled (`IDLEDISABLE = 1`)
+- Performance step-up policy set to aggressive (`PERFINCPOL = 2`)
+- Sleep, Hibernate, Hybrid Sleep set to **Never**
 - Screen timeout set to **Never**
-- Hard disk spindown set to **Never**
-- USB selective suspend **disabled** — controllers stay powered
-- Activates the plan immediately
+- Hard disk and SSD spindown set to **Never**
+- USB selective suspend disabled — all peripherals stay fully powered
+- Plan activated immediately
 
-> After running this, you'll see "UNLIMITED PERFORMANCE" in Windows Power Options.
-
----
-
-### [6] Deep Clean Registry
-Removes stale, obsolete, and privacy-sensitive registry entries.
-- Clears Run / RunMRU history
-- Clears Recent Documents list
-- Clears Explorer address bar typed paths
-- Removes orphaned font cache registry entries
-- Removes stale thumbnail cache pointers
-- Disables Remote Registry service (security hardening)
-- Clears Windows Error Reporting cache
+**Thermal Management**
+- Cooling policy set to **Active** — fan priority over performance reduction
+- Thermal throttle notification delay removed
+- Connected Standby / Modern Standby disabled — no surprise power state drops
+- Processor autonomous mode enabled for fastest frequency ramp-up
 
 ---
 
-### [7] Optimize RAM and Virtual Memory
-Frees up RAM and tunes memory management.
-- Flushes DNS resolver cache
-- Purges Windows **standby memory list** via NT kernel API
-- Trims working sets of all running processes
-- Sets page file to **system-managed** (optimal sizing)
-- Disables **memory compression** (frees CPU cycles)
-- Shows MB freed before and after
+### [6] Competitive Network Stabilization
+Network stabilization for competitive gaming — lower ping, stable packets, no throttling.
+
+**TCP/IP Stack Reset**
+- DNS cache flushed
+- IP released and renewed
+- TCP/IP stack reset (`netsh int ip reset`)
+- Winsock catalog reset
+- IPv6 stack reset
+
+**Latency & Packet Tuning**
+- Nagle algorithm disabled — `TcpAckFrequency = 1`, `TCPNoDelay = 1`, `TcpDelAckTicks = 0`
+- Network throttling index removed (`NetworkThrottlingIndex = 0xFFFFFFFF`)
+- RSS (Receive Side Scaling) enabled for multi-core NIC performance
+- TCP auto-tuning set to normal
+- ECN (Explicit Congestion Notification) enabled for better congestion handling
+- MTU locked to 1500 bytes per active adapter (standard Ethernet)
+
+**DNS**
+- DNS set to **Cloudflare 1.1.1.1 / 1.0.0.1** on all active adapters
+- Negative DNS cache time set to 0 — no stale NXDOMAIN blocks
+- DNS max cache TTL capped at 1 hour
+- DNS flushed after all changes
+
+**NIC Power & QoS**
+- QoS 20% bandwidth reservation removed (`NonBestEffortLimit = 0`)
+- NIC Wake-on-LAN and Wake-on-Pattern disabled — prevents micro-stutters
+- Interrupt moderation disabled per adapter — lower per-packet latency
+- NIC receive buffers set to 2048
+- IPv6 disabled on active adapters — removes dual-stack DNS lookup delay
 
 ---
 
-### [8] Optimize Network and DNS
-Lowers latency and improves network reliability.
-- Flushes DNS cache
-- Releases and renews IP address
-- Resets TCP/IP stack (`netsh int ip reset`)
-- Resets Winsock catalog (`netsh winsock reset`)
-- Disables network throttling (NetworkThrottlingIndex)
-- Disables **Nagle algorithm** — lower TCP latency for gaming/VoIP
-- Sets DNS to **Cloudflare 1.1.1.1 / 1.0.0.1** (fastest public DNS)
+### [7] Delete All Caches and Junk Files
+Wipes every cache and junk pile Windows accumulates over time.
+- User TEMP and Windows TEMP folders
+- Windows Prefetch cache
+- IE / Edge INetCache
+- Windows Explorer thumbnail database
+- DirectX Shader Cache (D3DSCache)
+- NVIDIA DXCache, GLCache, OptixCache
+- AMD DxCache
+- Windows Error Reports
+- Chrome cache
+- Edge cache
+- Firefox profiles cache
+- Recycle Bin (all drives)
+- Windows Update download cache (`SoftwareDistribution\Download`)
+- Font cache (automatically rebuilds on next boot)
+- Windows Disk Cleanup (`cleanmgr /sagerun:1`)
+
+---
+
+### [8] Deep Clean Registry + RAM
+Registry cleanup combined with live RAM reclamation — shows freed MB before and after.
+
+**Registry**
+- Run / RunMRU history cleared
+- Recent Documents list cleared
+- Explorer typed paths cleared
+- Stale font cache registry entries removed
+- Stale thumbnail cache pointers removed
+- Remote Registry service disabled
+- Windows Error Reporting queue cleared
+
+**RAM**
+- Standby memory list purged via `NtSetSystemInformation` kernel API
+- Process working sets trimmed across all running processes
+- Page file set to system-managed (optimal automatic sizing)
+- Memory compression disabled (frees CPU cycles)
+- DNS cache flushed
+- Before/after RAM usage displayed in MB
 
 ---
 
 ### [9] FULL NUKE — Run All Optimizations
-Runs all 8 modules sequentially in one go.
-- Creates a restore point first (safety)
-- Runs every module automatically
-- Offers to **restart your PC** when complete for maximum effect
+Runs all 8 modules sequentially in a single pass.
+- Creates restore point first for safety
+- Runs every module automatically without pausing
+- Shows module-by-module progress
+- Offers to **restart your PC** (15-second countdown, cancellable) for maximum effect
+
+---
+
+## Coverage Summary
+
+| Pillar | Covered By |
+|---|---|
+| Max FPS + minimal input lag | Modules 2, 3, 5 |
+| Bloatware + background process removal | Module 4 |
+| Advanced power + thermal management | Module 5 |
+| Network stabilization for competitive gaming | Module 6 |
+| System cleanliness + RAM | Modules 7, 8 |
 
 ---
 
 ## Safety & Restore
 
-> **Always run option [1] before [9] (Full Nuke).**
+> **Always run option [1] before option [9] (Full Nuke).**
 
-All tweaks are reversible:
-- **System Restore** — undoes all registry and system changes
-- **Power Plan** — delete "UNLIMITED PERFORMANCE" in Power Options to restore default
-- **Services** — re-enable any service via `services.msc`
-- **DNS** — reset via `netsh interface ip set dns "adapter" dhcp`
+All changes are reversible:
+
+| What to undo | How |
+|---|---|
+| All registry + system changes | System Restore → Control Panel → Recovery → System Restore |
+| UNLIMITED PERFORMANCE plan | Delete it in Power Options, reactivate Balanced |
+| Disabled services | Re-enable via `services.msc` (search "Services" in Start) |
+| DNS changes | `netsh interface ip set dns "Ethernet" dhcp` |
+| Visual effects | Control Panel → System → Advanced → Performance → Visual Effects |
+| Removed UWP apps | Reinstall from Microsoft Store individually |
 
 ---
 
@@ -181,32 +263,56 @@ All tweaks are reversible:
 
 ```
 📁 PC Super Optimizer/
-├── optimizer.py      ← Main Python script (all logic)
-├── RUN.bat           ← Double-click launcher
-└── README.md         ← This file
+├── optimizer.py    ← Main Python script — all 8 modules and terminal UI
+├── RUN.bat         ← 6-line launcher — checks Python, then runs optimizer.py
+├── README.md       ← This file
+└── ABOUT.docx      ← Formatted reference document
 ```
 
 ---
 
 ## FAQ
 
-**Q: The BAT file opens and closes instantly.**
-A: Python is not installed or not in PATH. Install from python.org and check "Add Python to PATH".
+**Q: RUN.bat opens and closes instantly.**
+A: Python is not installed or not in PATH. Download from python.org — check "Add Python to PATH" during install.
 
-**Q: I get a UAC prompt — is that normal?**
-A: Yes. Administrator rights are required to modify registry keys, services, and power plans.
+**Q: UAC prompt appears — is that normal?**
+A: Yes. Administrator rights are required to modify registry keys, services, and power plans. This is expected behavior.
 
 **Q: Will this break my PC?**
-A: Unlikely. All changes are standard Windows tweaks. Create a restore point first (option 1) for peace of mind.
+A: All tweaks are standard Windows registry and `powercfg` commands used by performance enthusiasts. Run option [1] first to create a restore point and you can always roll back.
 
-**Q: Can I undo the changes?**
-A: Yes. Use System Restore (Control Panel → Recovery → System Restore) to roll everything back.
+**Q: Can I undo everything?**
+A: Yes. System Restore (Control Panel → Recovery → System Restore) undoes all registry and system changes in one step.
 
-**Q: The UNLIMITED power plan isn't showing.**
-A: Run option [5] again. Some systems require Ultimate Performance to be unlocked first via `powercfg -duplicatescheme`.
+**Q: UNLIMITED PERFORMANCE plan is not in Power Options.**
+A: Run option [5] again. On some systems, Ultimate Performance needs to be unlocked first via `powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61` in an admin CMD.
 
-**Q: My antivirus flagged this.**
-A: Some AV software flags scripts that modify registry or services. This tool does not connect to the internet, does not install anything, and contains no malware. You can read every line of `optimizer.py` yourself.
+**Q: My antivirus flagged the script.**
+A: Some AV tools flag scripts that modify registry, services, or power plans. This tool does not connect to the internet, installs nothing, and contains no malware. Every line of `optimizer.py` is human-readable.
+
+**Q: Some apps I want were removed in Module 4.**
+A: Reinstall any removed app directly from the Microsoft Store. Module 4 only removes pre-installed Microsoft apps, not anything you installed yourself.
+
+**Q: Module 6 changed my DNS — will this affect browsing?**
+A: Cloudflare 1.1.1.1 is faster and more private than most ISP DNS. If you want to revert: `netsh interface ip set dns "Ethernet" dhcp` in an admin CMD.
+
+---
+
+## Changelog
+
+### v4.0
+- Module 3 rebuilt: HAGS enabled, 1ms timer resolution, USB HID selective suspend disabled, full GPU task scheduler config
+- Module 4 added: 24 services disabled, 32 UWP apps removed + de-provisioned, full telemetry hardening
+- Module 5 expanded: Active cooling policy, Connected Standby disabled, aggressive CPU step-up policy
+- Module 6 expanded: Nagle `TcpDelAckTicks=0`, NIC interrupt moderation, receive buffers, QoS reservation removed, IPv6 disabled, per-adapter DNS
+- Module 7 expanded: DirectX shader cache, OptixCache, Firefox, Chrome, WER added
+- All modules now use direct `winreg` API calls instead of `reg add` shell commands
+
+### v3.0
+- Rewrote from BAT to Python for reliability
+- ANSI color terminal UI
+- 8-module architecture with Full Nuke mode
 
 ---
 
@@ -217,5 +323,4 @@ Use at your own risk. Always create a restore point before running.
 
 ---
 
-*Built with Python 3 | Windows 10/11 | No dependencies*
-"# pc-optimzier" 
+*PC Super Optimizer v4.0 — Built with Python 3 — Windows 10 / 11 — No dependencies*

@@ -265,8 +265,7 @@ All changes are reversible:
 📁 PC Super Optimizer/
 ├── optimizer.py    ← Main Python script — all 8 modules and terminal UI
 ├── RUN.bat         ← 6-line launcher — checks Python, then runs optimizer.py
-├── README.md       ← This file
-└── ABOUT.docx      ← Formatted reference document
+└── README.md       ← This file
 ```
 
 ---
@@ -296,6 +295,13 @@ A: Reinstall any removed app directly from the Microsoft Store. Module 4 only re
 
 **Q: Module 6 changed my DNS — will this affect browsing?**
 A: Cloudflare 1.1.1.1 is faster and more private than most ISP DNS. If you want to revert: `netsh interface ip set dns "Ethernet" dhcp` in an admin CMD.
+
+---
+
+---
+
+## WINDOWS OS UPDATE (OPTIONAL)
+- Use Atlas OS for better performace safe to use and better for gaming
 
 ---
 
